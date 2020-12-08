@@ -1,0 +1,27 @@
+{
+  "name": "local-library-project",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "devstart": "nodemon ./bin/www",
+    "severstart": "DEBUG=local-library-project:* npm run devstart"
+  },
+  "dependencies": {
+    "async": "^3.2.0",
+    "compression": "^1.7.4",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "express-validator": "^6.7.0",
+    "helmet": "^4.2.0",
+    "http-errors": "~1.6.3",
+    "luxon": "^1.25.0",
+    "mongoose": "^5.10.16",
+    "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}

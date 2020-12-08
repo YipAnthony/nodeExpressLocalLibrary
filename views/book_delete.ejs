@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('partials/head') -%> 
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <%- include('partials/sidebar') -%> 
+                <div class="col-sm-10">
+                   <h1><%= title %> <%= book.title %> </h1>
+                    <h4><strong>Author: </strong><%= book.author.name %> </h4>
+                    <h6><strong>Genre: </strong>
+                        <% book.genre.forEach( genre => { %>
+                            <%= genre.name %>,
+                        <% }) %> 
+                    </h6>
+                    <h6><strong>Summary: </strong><%= book.summary %> </h6>
+                    <hr>
+                    <% if (bookInstances.length > 0) { %> 
+                        <p class="text-danger">Must delete the following book instances before deleting the book: </p>
+                        <% bookInstances.forEach (bookInstance => { %>
+                            <a href="<%=  '../../bookinstance/' + bookInstance._id %> ">ID: <%= bookInstance._id %> </a>
+                            <br/>
+                        <% }) %> 
+                    <% } else {%> 
+                        <form action="" method="post">
+                            <div class="form-group">
+                                <input 
+                                    type="hidden"
+                                    name="bookid"
+                                    value=<%= book._id %> 
+                                    required
+                                    id="bookid"
+                                >
+                            </div>
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                        </form>
+                    <% } %> 
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

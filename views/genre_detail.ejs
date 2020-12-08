@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('partials/head') -%> 
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <%- include('partials/sidebar') -%> 
+                <div class="col-sm-10">
+                   <h1> <%= title %> <%= genre.name %> </h1>
+                   <div style="margin-left: 20px; margin-top:20px;">
+                        <h4> Books </h4>
+                        <dl>
+                            <% genre_books.forEach(book => { %>
+                                <dt>
+                                    <a href="<%= book.url %> "> <%= book.title %> </a>
+                                </dt>
+                                <dd><%= book.summary %> </dd>
+                            <% }) %> 
+                            <% if (genre_books.length === 0) { %>
+                                <p>This genre has no books</p>
+                            <% } %> 
+                        </dl>
+                   </div>
+                   <button 
+                        class="btn btn-danger" 
+                        <% let location = genre._id + "/delete"%>
+                        onclick="location.href='<%= location %>'"
+                    >Delete Genre</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

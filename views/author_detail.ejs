@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('partials/head') -%> 
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <%- include('partials/sidebar') -%> 
+                <div class="col-sm-10">
+                    <h1><%= title%> <%= author.name %>  </h1>
+                    <p><%= author.lifespan %> </p>
+
+                    <div style="margin-left:20px; margin-top:20px">
+                        <h4>Books</h4>
+                        <dl>
+                            <% authors_books.forEach(book => { %>
+                                <dt>
+                                    <a href="<%= book.url %>"> <%= book.title %> </a>
+                                </dt>
+                                <dd><%= book.summary %> </dd>
+                            <% }) %>  
+                            <% if(authors_books.length === 0 ) { %>
+                                <p>This author has no books</p>
+                            <% } %> 
+                        </dl>
+                    </div>
+                    <hr>
+                    <p>
+                        <a href="<%= author.url + '/delete' %> ">Delete Author</a>
+                    </p>
+                    <p>
+                        <a href="<%= author.url + '/update' %> ">Update Author</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
