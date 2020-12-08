@@ -1,9 +1,12 @@
 var createError = require('http-errors');
 var express = require('express');
+var compression = require('compression')
+var helmet = require('helmet')
 
 // Set up mongoose connection
 const mongoose = require('mongoose')
-const mongoDB = 'mongodb+srv://Testuser1:123123123@cluster0.vf8fj.mongodb.net/local_library?retryWrites=true&w=majority'
+const dev_db_url = 'mongodb+srv://Testuser1:123123123@cluster0.vf8fj.mongodb.net/local_library?retryWrites=true&w=majority'
+var mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true})
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
@@ -22,6 +25,9 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+app.use(compression()) //Compress all routes
+app.use(helmet()) //Protects against known vulnerabilities 
 
 app.use(logger('dev'));
 app.use(express.json());
